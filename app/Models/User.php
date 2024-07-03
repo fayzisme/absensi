@@ -2,28 +2,55 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, HasRoles, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'avatar',
-    ];
+    protected $guarded = ['id'];
+
+    public function Role()
+    {
+        return $this->belongsTo(Role::class, 'id_role');
+    }
+
+    public function MappingShift()
+    {
+        return $this->hasMany(MappingShift::class);
+    }
+
+    public function Lembur()
+    {
+        return $this->hasMany(Lembur::class);
+    }
+
+    public function Ijin()
+    {
+        return $this->hasMany(Ijin::class);
+    }
+
+    public function Lokasi()
+    {
+        return $this->belongsTo(Lokasi::class);
+    }
+
+    public function whatsapp($phoneNumber) {
+        if (substr($phoneNumber, 0, 1) == '0') {
+            return '62' . substr($phoneNumber, 1);
+        }
+        return $phoneNumber;
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -36,45 +63,16 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
-     /**
-     * accessor avatar user
-     */
-    protected function avatar(): Attribute
+    public function notifications()
     {
-        return Attribute::make(
-            get: fn ($value) => $value != null ? asset('/storage/avatars/' . $value) : asset('avatar.png'),
-        );
-    }
-
-    /**
-     *  get all permissions users
-     */
-    public function getPermissions()
-    {
-        return $this->getAllPermissions()->mapWithKeys(function($permission){
-            return [
-                $permission['name'] => true
-            ];
-        });
-    }
-
-    /**
-     * check role isSuperAdmin
-     */
-    public function isSuperAdmin()
-    {
-        return $this->hasRole('super-admin');
+        return $this->morphMany(DatabaseNotification::class, 'notifiable')->orderBy('created_at', 'desc');
     }
 }
