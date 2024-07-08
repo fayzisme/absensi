@@ -173,30 +173,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/pegawai') }}" class="nav-link">
-                                    <i class="fas fa-users" style="{{ Request::is('pegawai*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('pegawai*') ? 'color: blue' : '' }}">Pegawai</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/payroll') }}" class="nav-link">
-                                    <i class="fa fa-file-invoice-dollar" style="{{ Request::is('payroll*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('payroll*') ? 'color: blue' : '' }}">Payroll</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/my-dokumen') }}" class="nav-link">
-                                    <i class="fa fa-folder-open" style="{{ Request::is('my-dokumen*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('my-dokumen*') ? 'color: blue' : '' }}">Dokumen</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/kasbon') }}" class="nav-link">
-                                    <i class="fa fa-comments-dollar" style="{{ Request::is('kasbon*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('kasbon*') ? 'color: blue' : '' }}">Kasbon</span>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="{{ url('/cuti') }}" class="nav-link">
                                     <i class="fa fa-hourglass-half" style="{{ Request::is('cuti*') ? 'color: blue' : 'color: black' }}"></i>
                                     <span style="{{ Request::is('cuti*') ? 'color: blue' : '' }}">Cuti / Izin</span>
@@ -215,18 +191,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/dinas-luar') }}" class="nav-link">
-                                    <i class="fa fa-stopwatch" style="{{ Request::is('dinas-luar*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('dinas-luar*') ? 'color: blue' : '' }}">Dinas Luar</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/my-dinas-luar') }}" class="nav-link">
-                                    <i class="fa fa-user-secret" style="{{ Request::is('my-dinas-luar*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('my-dinas-luar*') ? 'color: blue' : '' }}">My Dinas Luar</span>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="{{ url('/lembur') }}" class="nav-link">
                                     <i class="fa fa-user-clock" style="{{ Request::is('lembur*') ? 'color: blue' : 'color: black' }}"></i>
                                     <span style="{{ Request::is('lembur*') ? 'color: blue' : '' }}">Lembur</span>
@@ -242,12 +206,6 @@
                                 <a href="{{ url('/request-location') }}" class="nav-link">
                                     <i class="fa fa-holly-berry" style="{{ Request::is('request-location*') ? 'color: blue' : 'color: black' }}"></i>
                                     <span style="{{ Request::is('request-location*') ? 'color: blue' : '' }}">Request Location</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/euforia') }}" class="nav-link">
-                                    <i class="fa fa-baby" style="{{ Request::is('euforia*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('euforia*') ? 'color: blue' : '' }}">Euforia</span>
                                 </a>
                             </li>
                             <li>

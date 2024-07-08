@@ -142,10 +142,10 @@
                                     <div class="col mb-4">
                                         <?php $gender = array(
                                         [
-                                            "gender" => "Laki-Laki"
+                                            "gender" => "L"
                                         ],
                                         [
-                                            "gender" => "Perempuan"
+                                            "gender" => "P"
                                         ]);
                                         ?>
                                         <label for="gender">Gender</label>
@@ -178,10 +178,10 @@
                                     <div class="col mb-4">
                                         <?php $sNikah = array(
                                         [
-                                            "status" => "Menikah"
+                                            "status" => "menikah"
                                         ],
                                         [
-                                            "status" => "Lajang"
+                                            "status" => "lajang"
                                         ]);
                                         ?>
                                         <label for="status_nikah">Status Pernikahan</label>
@@ -230,15 +230,6 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="col mb-4">
-                                        <label for="rekening">Rekening</label>
-                                        <input type="number" class="form-control @error('rekening') is-invalid @enderror" id="rekening" name="rekening" value="{{ old('rekening', $karyawan->rekening) }}">
-                                        @error('rekening')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                    <div class="col mb-4">
                                         <label for="alamat">Alamat</label>
                                         <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror">{{ old('alamat', $karyawan->alamat) }}</textarea>
                                         @error('alamat')
@@ -246,205 +237,6 @@
                                             {{ $message }}
                                         </div>
                                         @enderror
-                                    </div>
-                                </div>
-                                <div class="col mb-4">
-                                    <h3 style="color: blue">Cuti & Izin</h3>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col mb-4">
-                                        <label for="izin_cuti">Cuti</label>
-                                        <input type="number" class="form-control @error('izin_cuti') is-invalid @enderror" id="izin_cuti" name="izin_cuti" value="{{ old('izin_cuti', $karyawan->izin_cuti) }}">
-                                        @error('izin_cuti')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                    <div class="col mb-4">
-                                        <label for="izin_lainnya">Izin Masuk</label>
-                                        <input type="number" class="form-control @error('izin_lainnya') is-invalid @enderror" id="izin_lainnya" name="izin_lainnya" value="{{ old('izin_lainnya', $karyawan->izin_lainnya) }}">
-                                        @error('izin_lainnya')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col mb-4">
-                                        <label for="izin_telat">Izin Telat</label>
-                                        <input type="number" class="form-control @error('izin_telat') is-invalid @enderror" id="izin_telat" name="izin_telat" value="{{ old('izin_telat', $karyawan->izin_telat) }}">
-                                        @error('izin_telat')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                    <div class="col mb-4">
-                                        <label for="izin_pulang_cepat">Izin Pulang Cepat</label>
-                                        <input type="number" class="form-control @error('izin_pulang_cepat') is-invalid @enderror" id="izin_pulang_cepat" name="izin_pulang_cepat" value="{{ old('izin_pulang_cepat', $karyawan->izin_pulang_cepat) }}">
-                                        @error('izin_pulang_cepat')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col mb-4">
-                                    <h3 style="color: blue">Penjumlahan Gaji</h3>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col mb-4">
-                                        <label for="gaji_pokok">Gaji Pokok</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control money @error('gaji_pokok') is-invalid @enderror" name="gaji_pokok" value="{{ old('gaji_pokok', $karyawan->gaji_pokok) }}">
-                                            <div class="input-group-text">
-                                                <span>/ Bulan</span>
-                                            </div>
-                                            @error('gaji_pokok')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col mb-4">
-                                        <label for="makan_transport">Makan Dan Transport</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control money @error('makan_transport') is-invalid @enderror" name="makan_transport" value="{{ old('makan_transport', $karyawan->makan_transport) }}">
-                                            <div class="input-group-text">
-                                                <span>/ Bulan</span>
-                                            </div>
-                                            @error('makan_transport')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col mb-4">
-                                        <label for="lembur">Lembur</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control money @error('lembur') is-invalid @enderror" name="lembur" value="{{ old('lembur', $karyawan->lembur) }}">
-                                            <div class="input-group-text">
-                                                <span>/ Jam</span>
-                                            </div>
-                                            @error('lembur')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col mb-4">
-                                        <label for="kehadiran">100% Kehadiran</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control money @error('kehadiran') is-invalid @enderror" name="kehadiran" value="{{ old('kehadiran', $karyawan->kehadiran) }}">
-                                            <div class="input-group-text">
-                                                <span>/ Bulan</span>
-                                            </div>
-                                            @error('kehadiran')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col mb-4">
-                                        <label for="thr">THR</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control money @error('thr') is-invalid @enderror" name="thr" value="{{ old('thr', $karyawan->thr) }}">
-                                            <div class="input-group-text">
-                                                <span>/ Bulan</span>
-                                            </div>
-                                            @error('thr')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col mb-4">
-                                        <label for="bonus">Bonus</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control money @error('bonus') is-invalid @enderror" name="bonus" value="{{ old('bonus', $karyawan->bonus) }}">
-                                            <div class="input-group-text">
-                                                <span>/ Bulan</span>
-                                            </div>
-                                            @error('bonus')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col mb-4">
-                                    <h3 style="color: blue">Pengurangan Gaji</h3>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col mb-4">
-                                        <label for="izin">Izin</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control money @error('izin') is-invalid @enderror" name="izin" value="{{ old('izin', $karyawan->izin) }}">
-                                            <div class="input-group-text">
-                                                <span>/ hari</span>
-                                            </div>
-                                            @error('izin')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col mb-4">
-                                        <label for="terlambat">Terlambat</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control money @error('terlambat') is-invalid @enderror" name="terlambat" value="{{ old('terlambat', $karyawan->terlambat) }}">
-                                            <div class="input-group-text">
-                                                <span>/ hari</span>
-                                            </div>
-                                            @error('terlambat')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col mb-4">
-                                        <label for="mangkir">Mangkir</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control money @error('mangkir') is-invalid @enderror" name="mangkir" value="{{ old('mangkir', $karyawan->mangkir) }}">
-                                            <div class="input-group-text">
-                                                <span>/ hari</span>
-                                            </div>
-                                            @error('mangkir')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col mb-4">
-                                        <label for="saldo_kasbon">Saldo Kasbon</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control money @error('saldo_kasbon') is-invalid @enderror" name="saldo_kasbon" value="{{ old('saldo_kasbon', $karyawan->saldo_kasbon) }}">
-                                            <div class="input-group-text">
-                                                <span>/ Tahun</span>
-                                            </div>
-                                            @error('saldo_kasbon')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>

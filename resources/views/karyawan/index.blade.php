@@ -9,35 +9,6 @@
                     </div>
                     <div class="col-md-6 p-0">                    
                         <a href="{{ url('/pegawai/tambah-pegawai') }}" class="btn btn-primary btn-sm ms-2">+ Tambah</a>
-                        {{-- <button class="btn btn-success btn-sm" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal"><i class="fa fa-table mr-2"></i> Import</button>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Import Users</h5>
-                                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <form action="{{ url('/pegawai/import') }}" method="POST" enctype="multipart/form-data">
-                                        <div class="modal-body">
-                                            @csrf
-                                            <div class="form-group">
-                                                <label for="file_excel">File Excel</label>
-                                                <input type="file" name="file_excel" id="file_excel" class="form-control @error('file_excel') is-invalid @enderror">
-                                                @error('file_excel')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Close</button>
-                                            <button class="btn btn-secondary" type="submit">Save changes</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </div>

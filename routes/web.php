@@ -5,7 +5,7 @@ use App\Events\NotifApproval;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\authController;
-use App\Http\Controllers\CutiController;
+use App\Http\Controllers\IjinController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\ShiftController;
@@ -65,7 +65,6 @@ Route::get('/pegawai/edit-shift/{id}', [karyawanController::class, 'editShift'])
 Route::get('/pegawai/edit-dinas/{id}', [karyawanController::class, 'editDinas'])->middleware('admin');
 
 Route::put('/pegawai/proses-edit-shift/{id}', [karyawanController::class, 'prosesEditShift'])->middleware('auth');
-Route::put('/pegawai/proses-edit-dinas/{id}', [karyawanController::class, 'prosesEditDinas'])->middleware('auth');
 
 Route::get('/absen', [AbsenController::class, 'index'])->middleware('auth');
 
@@ -110,18 +109,18 @@ Route::get('/rekap-data/get-data', [RekapDataController::class, 'getData'])->mid
 Route::get('/rekap-data/payroll/{id}', [RekapDataController::class, 'payroll'])->middleware('admin');
 Route::post('/rekap-data/payroll/tambah', [RekapDataController::class, 'tambahPayroll'])->middleware('admin');
 
-Route::get('/cuti', [CutiController::class, 'index'])->middleware('auth');
-Route::post('/cuti/tambah', [CutiController::class, 'tambah'])->middleware('auth');
-Route::delete('/cuti/delete/{id}', [CutiController::class, 'delete'])->middleware('auth');
-Route::get('/cuti/edit/{id}', [CutiController::class, 'edit'])->middleware('auth');
-Route::put('/cuti/proses-edit/{id}', [CutiController::class, 'editProses'])->middleware('auth');
-Route::get('/data-cuti', [CutiController::class, 'dataCuti'])->middleware('admin');
-Route::get('/data-cuti/tambah', [CutiController::class, 'tambahAdmin'])->middleware('admin');
-Route::post('/data-cuti/getuserid', [CutiController::class, 'getUserId'])->middleware('admin');
-Route::post('/data-cuti/proses-tambah', [CutiController::class, 'tambahAdminProses'])->middleware('admin');
-Route::delete('/data-cuti/delete/{id}', [CutiController::class, 'deleteAdmin'])->middleware('admin');
-Route::get('/data-cuti/edit/{id}', [CutiController::class, 'editAdmin'])->middleware('admin');
-Route::put('/data-cuti/edit-proses/{id}', [CutiController::class, 'editAdminProses'])->middleware('admin');
+Route::get('/cuti', [IjinController::class, 'index'])->middleware('auth');
+Route::post('/cuti/tambah', [IjinController::class, 'tambah'])->middleware('auth');
+Route::delete('/cuti/delete/{id}', [IjinController::class, 'delete'])->middleware('auth');
+Route::get('/cuti/edit/{id}', [IjinController::class, 'edit'])->middleware('auth');
+Route::put('/cuti/proses-edit/{id}', [IjinController::class, 'editProses'])->middleware('auth');
+Route::get('/data-cuti', [IjinController::class, 'dataCuti'])->middleware('admin');
+Route::get('/data-cuti/tambah', [IjinController::class, 'tambahAdmin'])->middleware('admin');
+Route::post('/data-cuti/getuserid', [IjinController::class, 'getUserId'])->middleware('admin');
+Route::post('/data-cuti/proses-tambah', [IjinController::class, 'tambahAdminProses'])->middleware('admin');
+Route::delete('/data-cuti/delete/{id}', [IjinController::class, 'deleteAdmin'])->middleware('admin');
+Route::get('/data-cuti/edit/{id}', [IjinController::class, 'editAdmin'])->middleware('admin');
+Route::put('/data-cuti/edit-proses/{id}', [IjinController::class, 'editAdminProses'])->middleware('admin');
 Route::get('/my-profile', [KaryawanController::class, 'myProfile'])->middleware('auth');
 Route::put('/my-profile/update/{id}', [KaryawanController::class, 'myProfileUpdate'])->middleware('auth');
 Route::get('/my-profile/edit-password', [KaryawanController::class, 'editPassMyProfile'])->middleware('auth');

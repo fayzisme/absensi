@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cuti;
-use App\Models\dinasLuar;
 use App\Models\Lembur;
 use App\Models\Lokasi;
 use App\Models\User;
@@ -14,9 +12,6 @@ use App\Models\Sip;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use App\Imports\UsersImport;
-use App\Models\Golongan;
-use App\Models\Payroll;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -74,17 +69,6 @@ class karyawanController extends Controller
             'title' => 'Detail Karyawan',
             'user' => $user
         ]);
-    }
-
-    public function importUsers(Request $request)
-    {
-        $request->validate([
-            'file_excel' => 'required|mimes:xls,xlsx,csv|max:5000'
-        ]);
-        $nama_file = $request->file('file_excel')->store('file_excel');
-
-        Excel::import(new UsersImport, public_path('/storage/'.$nama_file));
-        return back()->with('success', 'Data Berhasil Di Import');
     }
 
     public function tambahKaryawan()
@@ -175,30 +159,6 @@ class karyawanController extends Controller
 
     public function editKaryawanProses(Request $request, $id)
     {
-        if($request["izin_cuti"] == null) {
-            $request["izin_cuti"] = "0";
-        } else {
-            $request["izin_cuti"];
-        }
-
-        if($request["izin_lainnya"] == null) {
-            $request["izin_lainnya"] = "0";
-        }  else {
-            $request["izin_lainnya"];
-        }
-
-        if($request["izin_telat"] == null) {
-            $request["izin_telat"] = "0";
-        }  else {
-            $request["izin_telat"];
-        }
-
-        if($request["izin_pulang_cepat"] == null) {
-            $request["izin_pulang_cepat"] = "0";
-        }  else {
-            $request["izin_pulang_cepat"];
-        }
-
         $rules = [
             'name' => 'required|max:255',
             'foto_karyawan' => 'image|file|max:10240',
@@ -209,23 +169,8 @@ class karyawanController extends Controller
             'tgl_join' => 'required',
             'status_nikah' => 'required',
             'alamat' => 'required',
-            'izin_cuti' => 'required',
-            'izin_lainnya' => 'required',
-            'izin_telat' => 'required',
-            'izin_pulang_cepat' => 'required',
-            'is_admin' => 'required',
+            // 'is_admin' => 'required',
             'lokasi_id' => 'required',
-            'rekening' => 'nullable',
-            'gaji_pokok' => 'required',
-            'makan_transport' => 'required',
-            'lembur' => 'required',
-            'kehadiran' => 'required',
-            'thr' => 'required',
-            'bonus' => 'required',
-            'izin' => 'required',
-            'terlambat' => 'required',
-            'mangkir' => 'required',
-            'saldo_kasbon' => 'required',
         ];
 
 
@@ -240,14 +185,6 @@ class karyawanController extends Controller
         }
 
         $validatedData = $request->validate($rules);
-        $validatedData['gaji_pokok'] = str_replace(',', '', $validatedData['gaji_pokok']);
-        $validatedData['makan_transport'] = str_replace(',', '', $validatedData['makan_transport']);
-        $validatedData['lembur'] = str_replace(',', '', $validatedData['lembur']);
-        $validatedData['kehadiran'] = str_replace(',', '', $validatedData['kehadiran']);
-        $validatedData['thr'] = str_replace(',', '', $validatedData['thr']);
-        $validatedData['bonus'] = str_replace(',', '', $validatedData['bonus']);
-        $validatedData['izin'] = str_replace(',', '', $validatedData['izin']);
-        $validatedData['terlambat'] = str_replace(',', '', $validatedData['terlambat']);
 
         if ($request->file('foto_karyawan')) {
             if ($request->foto_karyawan_lama) {
@@ -267,9 +204,6 @@ class karyawanController extends Controller
         $delete = User::find($id);
         MappingShift::where('user_id', $id)->delete();
         Lembur::where('user_id', $id)->delete();
-        Cuti::where('user_id', $id)->delete();
-        Sip::where('user_id', $id)->delete();
-        Payroll::where('user_id', $id)->delete();
         Storage::delete($delete->foto_karyawan);
         $delete->delete();
         return redirect('/pegawai')->with('success', 'Data Berhasil di Delete');
@@ -404,53 +338,6 @@ class karyawanController extends Controller
         return redirect('/pegawai/shift/' . $request["user_id"])->with('success', 'Data Berhasil di Tambahkan');
     }
 
-    public function prosesTambahDinas(Request $request)
-    {
-        date_default_timezone_set('Asia/Jakarta');
-
-        if($request["tanggal_mulai"] == null) {
-            $request["tanggal_mulai"] = $request["tanggal_akhir"];
-        } else {
-            $request["tanggal_mulai"] = $request["tanggal_mulai"];
-        }
-
-        if($request["tanggal_akhir"] == null) {
-            $request["tanggal_akhir"] = $request["tanggal_mulai"];
-        } else {
-            $request["tanggal_akhir"] = $request["tanggal_akhir"];
-        }
-
-        $begin = new \DateTime($request["tanggal_mulai"]);
-        $end = new \DateTime($request["tanggal_akhir"]);
-        $end = $end->modify('+1 day');
-
-        $interval = new \DateInterval('P1D'); //referensi : https://en.wikipedia.org/wiki/ISO_8601#Durations
-        $daterange = new \DatePeriod($begin, $interval ,$end);
-
-
-        foreach ($daterange as $date) {
-            $tanggal = $date->format("Y-m-d");
-
-            if ($request["shift_id"] == 1) {
-                $request["status_absen"] = "Libur";
-            } else {
-                $request["status_absen"] = "Tidak Masuk";
-            }
-
-            $request["tanggal"] = $tanggal;
-
-            $validatedData = $request->validate([
-                'user_id' => 'required',
-                'shift_id' => 'required',
-                'tanggal' => 'required',
-                'status_absen' => 'required',
-            ]);
-
-            dinasLuar::create($validatedData);
-        }
-        return redirect('/pegawai/dinas-luar/' . $request["user_id"])->with('success', 'Data Berhasil di Tambahkan');
-    }
-
     public function deleteShift(Request $request, $id)
     {
         $delete = MappingShift::find($id);
@@ -458,27 +345,11 @@ class karyawanController extends Controller
         return redirect('/pegawai/shift/' . $request["user_id"])->with('success', 'Data Berhasil di Delete');
     }
 
-    public function deleteDinas(Request $request, $id)
-    {
-        $delete = dinasLuar::find($id);
-        $delete->delete();
-        return redirect('/pegawai/dinas-luar/' . $request["user_id"])->with('success', 'Data Berhasil di Delete');
-    }
-
     public function editShift($id)
     {
         return view('karyawan.editshift', [
             'title' => 'Edit Shift',
             'shift_karyawan' => MappingShift::find($id),
-            'shift' => Shift::all()
-        ]);
-    }
-
-    public function editDinas($id)
-    {
-        return view('karyawan.editdinas', [
-            'title' => 'Edit Dinas',
-            'dinas_luar' => dinasLuar::find($id),
             'shift' => Shift::all()
         ]);
     }
@@ -506,27 +377,6 @@ class karyawanController extends Controller
         return redirect('/pegawai/shift/' . $request["user_id"])->with('success', 'Data Berhasil di Update');
     }
 
-    public function prosesEditDinas(Request $request, $id)
-    {
-        date_default_timezone_set('Asia/Jakarta');
-
-
-        if ($request["shift_id"] == 1) {
-            $request["status_absen"] = "Libur";
-        } else {
-            $request["status_absen"] = "Tidak Masuk";
-        }
-
-        $validatedData = $request->validate([
-            'shift_id' => 'required',
-            'tanggal' => 'required',
-            'status_absen' => 'required'
-        ]);
-
-        dinasLuar::where('id', $id)->update($validatedData);
-        return redirect('/pegawai/dinas-luar/' . $request["user_id"])->with('success', 'Data Berhasil di Update');
-    }
-
     public function myProfile()
     {
         if (auth()->user()->Role->nama_role == 'admin') {
@@ -552,8 +402,7 @@ class karyawanController extends Controller
             'gender' => 'required',
             'tgl_join' => 'required',
             'status_nikah' => 'required',
-            'alamat' => 'required',
-            'rekening' => 'required',
+            'alamat' => 'required'
         ];
 
 

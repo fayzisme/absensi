@@ -55,28 +55,26 @@
                             @enderror
                         </div>
 
-                        @if ($jabatan->manager !== auth()->user()->id)
-                            <div class="group-input">
-                                <input type="file" class="form-control @error('file_pengajuan') is-invalid @enderror" id="file_pengajuan" name="file_pengajuan">
-                                @error('file_pengajuan')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                        <div class="group-input">
+                            <input type="file" class="form-control @error('file_pengajuan') is-invalid @enderror" id="file_pengajuan" name="file_pengajuan">
+                            @error('file_pengajuan')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
-                            <div class="group-input">
-                                <label for="status_display">Status Pengajuan</label>
-                                <input type="text" class="@error('status_display') is-invalid @enderror" id="status_display" name="status_display" value="{{ old('status_display', $ms->status_pengajuan) }}" readonly>
-                                @error('status_display')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
+                        <div class="group-input">
+                            <label for="status_display">Status Pengajuan</label>
+                            <input type="text" class="@error('status_display') is-invalid @enderror" id="status_display" name="status_display" value="{{ old('status_display', $ms->status_pengajuan) }}" readonly>
+                            @error('status_display')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
-                            <input type="hidden" name="status_pengajuan" value="Menunggu">
-                        @endif
+                        <input type="hidden" name="status_pengajuan" value="Menunggu">
 
                         <div class="group-input">
                             <a href="{{ url('/storage/'.$ms->file_pengajuan) }}" target="_blank" class="form-control btn btn-success"><i class="fa fa-download me-2"></i> Lihat File</a>
@@ -84,14 +82,14 @@
 
                         <div class="group-input">
                             <label for="komentar">Komentar</label>
-                            <textarea name="komentar" id="komentar" class="@error('komentar') is-invalid @enderror" {{ $jabatan->manager !== auth()->user()->id ? 'readonly' : '' }}>{{ old('komentar', $ms->komentar) }}</textarea>
+                            <textarea name="komentar" id="komentar" class="@error('komentar') is-invalid @enderror" {{ $admin_id !== auth()->user()->id ? 'readonly' : '' }}>{{ old('komentar', $ms->komentar) }}</textarea>
                             @error('komentar')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
-                        @if ($jabatan->manager == auth()->user()->id)
+                        @if ($admin_id == auth()->user()->id)
                             <div class="row">
                                 <div class="col-6">
                                     <button type="submit" name="status_pengajuan" value="Tidak Disejutui" class="btn btn-danger float-right" {{ $ms->status_pengajuan == 'Disetujui' ? 'disabled' : '' }}>Tidak Setuju</button>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cuti;
+use App\Models\Ijin;
 use App\Models\User;
 use App\Models\MappingShift;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use App\Events\NotifApproval;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class CutiController extends Controller
+class IjinController extends Controller
 {
     public function index()
     {
@@ -20,7 +20,7 @@ class CutiController extends Controller
         $mulai = request()->input('mulai');
         $akhir = request()->input('akhir');
 
-        $cuti = Cuti::where('user_id', $user_id)
+        $cuti = Ijin::where('user_id', $user_id)
                     ->when($mulai && $akhir, function ($query) use ($mulai, $akhir) {
                         return $query->whereBetween('tanggal', [$mulai, $akhir]);
                                                             
@@ -29,13 +29,13 @@ class CutiController extends Controller
 
         if (auth()->user()->Role->nama_role == 'admin') {
             return view('cuti.index', [
-                'title' => 'Tambah Permintaan Cuti Karyawan',
+                'title' => 'Tambah Permintaan Ijin Karyawan',
                 'data_user' => $user,
                 'data_cuti_user' => $cuti
             ]);
         } else {
             return view('cuti.indexuser', [
-                'title' => 'Tambah Permintaan Cuti Karyawan',
+                'title' => 'Tambah Permintaan Ijin Karyawan',
                 'data_user' => $user,
                 'data_cuti_user' => $cuti
             ]);
@@ -82,7 +82,7 @@ class CutiController extends Controller
                 $validatedData['foto_cuti'] = $request->file('foto_cuti')->store('foto_cuti');
             }
 
-            Cuti::create($validatedData);
+            Ijin::create($validatedData);
         }
         
         $users = User::whereHas('Role', function ($query){
@@ -90,7 +90,7 @@ class CutiController extends Controller
         })->get();
         foreach ($users as $user) {
             $type = 'Approval';
-            $notif = 'Pengajuan Cuti Dari ' . auth()->user()->name . ' Butuh Approval Anda'; 
+            $notif = 'Pengajuan Ijin Dari ' . auth()->user()->name . ' Butuh Approval Anda'; 
             $url = url('/data-cuti?mulai='.$request["tanggal_mulai"].'&akhir='.$request["tanggal_akhir"]); 
 
             $user->messages = [
@@ -109,7 +109,7 @@ class CutiController extends Controller
 
     public function delete($id)
     {
-        $delete = Cuti::find($id);
+        $delete = Ijin::find($id);
         // Storage::delete($delete->foto_cuti);
         $delete->delete();
         return redirect('/cuti')->with('success', 'Data Berhasil di Delete');
@@ -118,13 +118,13 @@ class CutiController extends Controller
     public function edit($id){
         if (auth()->user()->Role->nama_role == 'admin') {
             return view('cuti.edit', [
-                'title' => 'Edit Permintaan Cuti',
-                'data_cuti_user' => Cuti::findOrFail($id)
+                'title' => 'Edit Permintaan Ijin',
+                'data_cuti_user' => Ijin::findOrFail($id)
             ]);
         } else {
             return view('cuti.edituser', [
-                'title' => 'Edit Permintaan Cuti',
-                'data_cuti_user' => Cuti::findOrFail($id)
+                'title' => 'Edit Permintaan Ijin',
+                'data_cuti_user' => Ijin::findOrFail($id)
             ]);
         }
 
@@ -147,24 +147,24 @@ class CutiController extends Controller
             $validatedData['foto_cuti'] = $request->file('foto_cuti')->store('foto_cuti');
         }
 
-        Cuti::where('id', $id)->update($validatedData);
+        Ijin::where('id', $id)->update($validatedData);
         $request->session()->flash('success', 'Data Berhasil di Update');
         return redirect('/cuti');
     }
 
-    public function dataCuti()
+    public function dataIjin()
     {
         $mulai = request()->input('mulai');
         $akhir = request()->input('akhir');
 
-        $cuti = Cuti::when($mulai && $akhir, function ($query) use ($mulai, $akhir) {
+        $cuti = Ijin::when($mulai && $akhir, function ($query) use ($mulai, $akhir) {
                         return $query->whereBetween('tanggal', [$mulai, $akhir]);
                                                             
                     })
                     ->orderBy('id', 'desc')->paginate(10)->withQueryString();
         
         return view('cuti.datacuti', [
-            'title' => 'Data Cuti Karyawan',
+            'title' => 'Data Ijin Karyawan',
             'data_cuti' => $cuti
         ]);
     }
@@ -172,7 +172,7 @@ class CutiController extends Controller
     public function tambahAdmin()
     {
         return view('cuti.tambahadmin', [
-            'title' => 'Tambah Cuti Pegawai',
+            'title' => 'Tambah Ijin Pegawai',
             'data_user' => User::select('id', 'name')->get()
         ]);
     }
@@ -189,8 +189,8 @@ class CutiController extends Controller
         
         $data_cuti = array(
             [
-                'nama' => 'Cuti',
-                'nama_cuti' => 'Cuti ('.$izin_cuti.')'
+                'nama' => 'Ijin',
+                'nama_cuti' => 'Ijin ('.$izin_cuti.')'
             ],
             [
                 'nama' => 'Izin Masuk',
@@ -206,7 +206,7 @@ class CutiController extends Controller
             ]
         );
                 
-        echo "<option value='' selected>Pilih Cuti</option>";
+        echo "<option value='' selected>Pilih Ijin</option>";
         foreach($data_cuti as $dc){
             echo "
                 <option value='$dc[nama]'>$dc[nama_cuti]</option>
@@ -254,7 +254,7 @@ class CutiController extends Controller
                 $validatedData['foto_cuti'] = $request->file('foto_cuti')->store('foto_cuti');
             }
 
-            Cuti::create($validatedData);
+            Ijin::create($validatedData);
         }
 
         return redirect('/data-cuti')->with('success', 'Data Berhasil di Tambahkan');
@@ -262,7 +262,7 @@ class CutiController extends Controller
 
     public function deleteAdmin($id)
     {
-        $delete = Cuti::find($id);
+        $delete = Ijin::find($id);
         // Storage::delete($delete->foto_cuti);
         $delete->delete();
         return redirect('/data-cuti')->with('success', 'Data Berhasil di Delete');
@@ -271,8 +271,8 @@ class CutiController extends Controller
     public function editAdmin($id)
     {
         return view('cuti.editadmin', [
-            'title' => 'Edit Cuti Karyawan',
-            'data_cuti_karyawan' => Cuti::findOrFail($id)
+            'title' => 'Edit Ijin Karyawan',
+            'data_cuti_karyawan' => Ijin::findOrFail($id)
         ]);
     }
 
@@ -280,7 +280,7 @@ class CutiController extends Controller
     {
         date_default_timezone_set('Asia/Jakarta');
 
-        $cuti = Cuti::find($id);
+        $cuti = Ijin::find($id);
         $validated = $request->validate([
             'nama_cuti' => 'required',
             'tanggal' => 'required',
@@ -293,7 +293,7 @@ class CutiController extends Controller
         $mapping_shift = MappingShift::where('tanggal', $request['tanggal'])->where('user_id', $cuti->user_id)->first();
 
         if ($request["status_cuti"] == "Diterima") {
-            if($request["nama_cuti"] == "Cuti") {
+            if($request["nama_cuti"] == "Ijin") {
                 $user->update([
                     'izin_cuti' => $user->izin_cuti - 1
                 ]);
@@ -368,7 +368,7 @@ class CutiController extends Controller
 
             $user = User::find($cuti->user_id);
             $type = 'Approved';
-            $notif = 'Cuti Anda Telah Diterima Oleh ' . auth()->user()->name; 
+            $notif = 'Ijin Anda Telah Diterima Oleh ' . auth()->user()->name; 
             $url = url('/cuti?mulai='.$cuti->tanggal.'&akhir='.$cuti->tanggal); 
     
             $user->messages = [
@@ -383,7 +383,7 @@ class CutiController extends Controller
         } else if ($request["status_cuti"] == "Ditolak") {
             $user = User::find($cuti->user_id);
             $type = 'Rejected';
-            $notif = 'Cuti Anda Telah Ditolak Oleh ' . auth()->user()->name; 
+            $notif = 'Ijin Anda Telah Ditolak Oleh ' . auth()->user()->name; 
             $url = url('/cuti?mulai='.$cuti->tanggal.'&akhir='.$cuti->tanggal); 
     
             $user->messages = [

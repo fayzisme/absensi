@@ -499,13 +499,11 @@ class AbsenController extends Controller
         $search = request()->input('search');
         $user_id = User::whereHas('Role', function ($query) {
             return $query->where('nama_role','admin');
-        })->first()->pluck('id');
-        $mapping_shift = MappingShift::where('status_pengajuan', '!=', null)
-                                    ->when($user_id == auth()->user()->id, function ($query) use ($user_id) {
+        })->first()->id;
+        $mapping_shift = MappingShift::when($user_id == auth()->user()->id, function ($query) use ($user_id) {
                                         $query->where(function ($q) use ($user_id) {
-                                            $q->whereIn('user_id', $user_id)
-                                                ->orWhere('user_id', auth()->user()->id);
-                                        });
+                                            $q->whereNotIn('user_id', [$user_id]);
+                                        })->where('status_pengajuan','<>', null);
                                     })
                                     ->when($user_id !== auth()->user()->id, function ($query) {
                                         $query->where('user_id', auth()->user()->id);
@@ -528,9 +526,13 @@ class AbsenController extends Controller
     public function editPengajuanAbsensi($id)
     {
         $ms = MappingShift::find($id);
+        $admin_id = User::whereHas('Role', function($query){
+            return $query->where('nama_role', 'admin');
+        })->first()->id;
         $title = 'Pengajuan Absensi';
         return view('absen.editPengajuan', compact(
             'ms',
+            'admin_id',
             'title'
         ));
     }
@@ -546,7 +548,6 @@ class AbsenController extends Controller
             'komentar' => 'nullable',
             'status_pengajuan' => 'required',
         ]);
-
         $ms->update($validated);
 
         if ($request['status_pengajuan'] == 'Disetujui') {
