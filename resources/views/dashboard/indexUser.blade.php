@@ -24,8 +24,15 @@
             </div>
             <div class="wallet-footer">
                 <ul class="d-flex justify-content-between align-items-center mx-12">
+                    <form id="location-form" action="{{ url('/my-location') }}" method="get" style="display: none;">
+                        @csrf
+                        <input type="hidden" name="lat" id="lat2">
+                        <input type="hidden" name="long" id="long2">
+                        <input type="hidden" name="userid" value="{{ auth()->user()->id }}">
+                    </form>
+                    
                     <li class="wallet-card-item">
-                        <a href="{{ url('/my-location') }}">
+                        <a href="#" id="location-link">
                             <svg class="w-[34px] h-[34px] text-gray-800 dark:text-white" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                 viewBox="0 0 24 24">
@@ -38,6 +45,7 @@
                             Location
                         </a>
                     </li>
+
                     <li class="wallet-card-item">
                         <a class="fw_6" href="{{ url('/cuti') }}">
                             <svg class="w-[34px] h-[34px] text-gray-800 dark:text-white" aria-hidden="true"
@@ -262,5 +270,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('location-link').addEventListener('click', function(event) {
+        event.preventDefault();
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                document.getElementById('lat2').value = position.coords.latitude;
+                document.getElementById('long2').value = position.coords.longitude;
+                document.getElementById('location-form').submit();
+            });
+        } else {
+            alert('Geolocation is not supported by this browser.');
+        }
+    });
+</script>
+
 
 @endsection

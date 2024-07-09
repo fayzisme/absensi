@@ -19,7 +19,7 @@ header('Location:auth-logout.php');
 <?php include 'layouts/main.php'; ?>
 
 <head>
-    <title>ESS | Employee Self Service</title>
+    <title>E Self Service</title>
     <?php include 'layouts/title-meta.php'; ?>
 
     <?php include 'layouts/head-css.php'; ?>
