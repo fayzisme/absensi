@@ -6,9 +6,9 @@ use App\Models\Lembur;
 use App\Models\Lokasi;
 use App\Models\User;
 use App\Models\MappingShift;
-use App\Models\ResetCuti;
+use App\Models\Cuti;
+use App\Models\Ijin;
 use App\Models\Shift;
-use App\Models\Sip;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -462,7 +462,7 @@ class karyawanController extends Controller
     {
         return view('karyawan.masterreset', [
             'title' => 'Master Data Reset Cuti',
-            'data_cuti' => ResetCuti::first()
+            'data_cuti' => Ijin::first()
         ]);
     }
 
