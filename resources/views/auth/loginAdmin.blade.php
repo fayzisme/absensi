@@ -9,7 +9,8 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
 
-    <link rel="shortcut icon" href="{{ url('/gacoan/assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ url('/myhr/images/logo.png') }}" />
+    <link rel="apple-touch-icon-precomposed" href="{{ url('/myhr/images/logo.png') }}" />
     <script src="{{ url('/gacoan/assets/js/config.js') }}"></script>
     <link href="{{ url('/gacoan/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
     <link href="{{ url('/gacoan/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
@@ -194,7 +195,7 @@
                         <!-- Logo -->
                         <div class="card-header py-4 text-center bg-primary">
                             <a href="{{ url('/login-admin') }}">
-                                <span><img src="{{ url('/gacoan/assets/images/logo.png') }}" alt="logo" height="55"></span>
+                                <span><img src="{{ url('/assets/img/logo.png') }}" alt="logo" height="55"></span>
                             </a>
                         </div>
 
@@ -261,7 +262,7 @@
         <span class="bg-body">
             <script>
                 document.write(new Date().getFullYear())
-            </script> © fayzisme - miegacoan.co.id
+            </script> © fayzisme - bowl-ling.com
         </span>
     </footer>
     <script src="{{ url('/gacoan/assets/js/vendor.min.js') }}"></script>

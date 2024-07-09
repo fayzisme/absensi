@@ -48,7 +48,7 @@
         <!-- end page -->
 
         <footer class="footer footer-alt fw-medium">
-			<span class="bg-body"><script>document.write(new Date().getFullYear())</script> © Pesta Pora Abadi - miegacoan.co.id</span>
+			<span class="bg-body"><script>document.write(new Date().getFullYear())</script> © Pesta Pora Abadi - bowl-ling.com</span>
         </footer>
         <?php include 'layouts/footer-scripts.php'; ?>
         
