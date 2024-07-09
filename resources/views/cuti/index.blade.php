@@ -22,27 +22,22 @@
                         </div>
                         <div class="col">
                             @php
-                                $izin_cuti = $data_user->izin_cuti;
-                                $izin_lainnya = $data_user->izin_lainnya;
-                                $izin_telat = $data_user->izin_telat;
-                                $izin_pulang_cepat = $data_user->izin_pulang_cepat;
-
                                 $data_cuti = array(
                                     [
                                         'nama' => 'Cuti',
-                                        'nama_cuti' => 'Cuti ('.$izin_cuti.')'
+                                        'nama_cuti' => 'Cuti '
                                     ],
                                     [
-                                        'nama' => 'Izin Masuk',
-                                        'nama_cuti' => 'Izin Masuk ('.$izin_lainnya.')'
+                                        'nama' => 'Izin Sakit',
+                                        'nama_cuti' => 'Izin Sakit '
                                     ],
                                     [
                                         'nama' => 'Izin Telat',
-                                        'nama_cuti' => 'Izin Telat ('.$izin_telat.')'
+                                        'nama_cuti' => 'Izin Telat '
                                     ],
                                     [
                                         'nama' => 'Izin Pulang Cepat',
-                                        'nama_cuti' => 'Izin Pulang Cepat ('.$izin_pulang_cepat.')'
+                                        'nama_cuti' => 'Izin Pulang Cepat'
                                     ]
                                 );
                             @endphp

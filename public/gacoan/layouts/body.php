@@ -1,2 +1,0 @@
-<!--All Vertical Pages-->
-<body>

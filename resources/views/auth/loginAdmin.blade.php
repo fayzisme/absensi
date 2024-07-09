@@ -11,9 +11,9 @@
 
     <link rel="shortcut icon" href="{{ url('/myhr/images/logo.png') }}" />
     <link rel="apple-touch-icon-precomposed" href="{{ url('/myhr/images/logo.png') }}" />
-    <script src="{{ url('/gacoan/assets/js/config.js') }}"></script>
-    <link href="{{ url('/gacoan/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
-    <link href="{{ url('/gacoan/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ url('/js/config.js') }}"></script>
+    <link href="{{ url('/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="{{ url('/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="authentication-bg position-relative">
@@ -265,8 +265,8 @@
             </script> © fayzisme - bowl-ling.com
         </span>
     </footer>
-    <script src="{{ url('/gacoan/assets/js/vendor.min.js') }}"></script>
-    <script src="{{ url('/gacoan/assets/js/app.min.js') }}"></script>
+    <script src="{{ url('/js/vendor.min.js') }}"></script>
+    <script src="{{ url('/js/app.min.js') }}"></script>
     @include('sweetalert::alert')
 </body>
 

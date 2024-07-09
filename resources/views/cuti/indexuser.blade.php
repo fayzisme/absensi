@@ -13,29 +13,24 @@
                     </div>
                     <div class="group-input">
                         @php
-                            $izin_cuti = $data_user->izin_cuti;
-                            $izin_lainnya = $data_user->izin_lainnya;
-                            $izin_telat = $data_user->izin_telat;
-                            $izin_pulang_cepat = $data_user->izin_pulang_cepat;
-
                             $data_cuti = array(
-                                [
-                                    'nama' => 'Cuti',
-                                    'nama_cuti' => 'Cuti ('.$izin_cuti.')'
-                                ],
-                                [
-                                    'nama' => 'Izin Masuk',
-                                    'nama_cuti' => 'Izin Masuk ('.$izin_lainnya.')'
-                                ],
-                                [
-                                    'nama' => 'Izin Telat',
-                                    'nama_cuti' => 'Izin Telat ('.$izin_telat.')'
-                                ],
-                                [
-                                    'nama' => 'Izin Pulang Cepat',
-                                    'nama_cuti' => 'Izin Pulang Cepat ('.$izin_pulang_cepat.')'
-                                ]
-                            );
+                                    [
+                                        'nama' => 'Cuti',
+                                        'nama_cuti' => 'Cuti '
+                                    ],
+                                    [
+                                        'nama' => 'Izin Sakit',
+                                        'nama_cuti' => 'Izin Sakit '
+                                    ],
+                                    [
+                                        'nama' => 'Izin Telat',
+                                        'nama_cuti' => 'Izin Telat '
+                                    ],
+                                    [
+                                        'nama' => 'Izin Pulang Cepat',
+                                        'nama_cuti' => 'Izin Pulang Cepat'
+                                    ]
+                                );
                         @endphp
                         <label for="nama_cuti" style="z-index:1000">Jenis Cuti / Izin</label>
                         <select class="@error('nama_cuti') is-invalid @enderror" id="nama_cuti" name="nama_cuti" data-live-search="true">
@@ -84,7 +79,7 @@
                         @enderror
                     </div>
                     <div class="group-input">
-                        <label for="alasan_cuti">Alasan Cuti</label>
+                        <label for="alasan_cuti">Alasan Izin</label>
                         <input type="text" class="form-control @error('alasan_cuti') is-invalid @enderror" id="alasan_cuti" name="alasan_cuti" value="{{ old('alasan_cuti') }}">
                         @error('alasan_cuti')
                         <div class="invalid-feedback">
