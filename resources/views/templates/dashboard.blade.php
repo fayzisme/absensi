@@ -105,7 +105,7 @@
       <div class="page-body-wrapper">
         <div class="sidebar-wrapper">
           <div>
-            <div class="logo-wrapper"><a href="{{ url('/dashboard') }}"><img class="img-fluid for-light" src="{{ url('/html/assets/images/logo/logo.png') }}" alt=""></a>
+            <div class="logo-wrapper"><a href="{{ url('/dashboard') }}"><img class="img-fluid for-light" width="85" src="{{ url('/assets/img/logo-admin.png') }}" alt=""></a>
               <div class="back-btn"><i class="fa fa-angle-left"></i></div>
               <div class="toggle-sidebar"><i class="fa fa-cog status_toggle middle sidebar-toggle"> </i></div>
             </div>
@@ -158,7 +158,7 @@
 
                       <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="clock"></i><span>Absensi</span></a>
                         <ul class="sidebar-submenu">
-                          <li><a href="{{ url('/absen') }}">Absen</a></li>
+                          <!-- <li><a href="{{ url('/absen') }}">Absen</a></li> -->
                           <li><a href="{{ url('/data-absen') }}">Data Absen</a></li>
                         </ul>
                       </li>

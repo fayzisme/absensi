@@ -150,7 +150,7 @@
                 <div class="tf-container">
                     <div class="d-flex justify-content-between align-items-center">
                         <a href="{{ url('/') }}" class="sidebar-logo">
-                            <img src="{{ url('/myhr/images/logo.png') }}" alt="logo">
+                            <!-- <img src="{{ url('/myhr/images/logo.png') }}" alt="logo"> -->
                             <h5>Absensi</h5>
                         </a>
                         <a href="javascript:void(0);" class="clear-panel"> <i class="icon-close1"></i> </a>
@@ -166,83 +166,75 @@
                             <li>
                                 <a href="{{ url('/dashboard') }}" class="nav-link">
                                     <i class="fas fa-home"
-                                        style="{{ Request::is('dashboard*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('dashboard*') ? 'color: blue' : '' }}">Home</span>
+                                        style="{{ Request::is('dashboard*') ? 'color : #066849' : 'color: black' }}"></i>
+                                    <span style="{{ Request::is('dashboard*') ? 'color : #066849' : '' }}">Home</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/my-profile') }}" class="nav-link">
                                     <i class="fas fa-user"
-                                        style="{{ Request::is('my-profile*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('my-profile*') ? 'color: blue' : '' }}">My
+                                        style="{{ Request::is('my-profile*') ? 'color : #066849' : 'color: black' }}"></i>
+                                    <span style="{{ Request::is('my-profile*') ? 'color : #066849' : '' }}">My
                                         Profile</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/cuti') }}" class="nav-link">
                                     <i class="fa fa-hourglass-half"
-                                        style="{{ Request::is('cuti*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('cuti*') ? 'color: blue' : '' }}">Cuti / Izin</span>
+                                        style="{{ Request::is('cuti*') ? 'color : #066849' : 'color: black' }}"></i>
+                                    <span style="{{ Request::is('cuti*') ? 'color : #066849' : '' }}">Cuti / Izin</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/absen') }}" class="nav-link">
                                     <i class="fa fa-camera"
-                                        style="{{ Request::is('absen*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('absen*') ? 'color: blue' : '' }}">Absensi</span>
+                                        style="{{ Request::is('absen*') ? 'color : #066849' : 'color: black' }}"></i>
+                                    <span style="{{ Request::is('absen*') ? 'color : #066849' : '' }}">Absensi</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/my-absen') }}" class="nav-link">
                                     <i class="fa fa-table"
-                                        style="{{ Request::is('my-absen*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('my-absen*') ? 'color: blue' : '' }}">My Absen</span>
+                                        style="{{ Request::is('my-absen*') ? 'color : #066849' : 'color: black' }}"></i>
+                                    <span style="{{ Request::is('my-absen*') ? 'color : #066849' : '' }}">My Absen</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/lembur') }}" class="nav-link">
                                     <i class="fa fa-user-clock"
-                                        style="{{ Request::is('lembur*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('lembur*') ? 'color: blue' : '' }}">Lembur</span>
+                                        style="{{ Request::is('lembur*') ? 'color : #066849' : 'color: black' }}"></i>
+                                    <span style="{{ Request::is('lembur*') ? 'color : #066849' : '' }}">Lembur</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/my-lembur') }}" class="nav-link">
                                     <i class="fa fa-business-time"
-                                        style="{{ Request::is('my-lembur*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('my-lembur*') ? 'color: blue' : '' }}">My Lembur</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/request-location') }}" class="nav-link">
-                                    <i class="fa fa-holly-berry"
-                                        style="{{ Request::is('request-location*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('request-location*') ? 'color: blue' : '' }}">Request
-                                        Location</span>
+                                        style="{{ Request::is('my-lembur*') ? 'color : #066849' : 'color: black' }}"></i>
+                                    <span style="{{ Request::is('my-lembur*') ? 'color : #066849' : '' }}">My Lembur</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/pengajuan-absensi') }}" class="nav-link">
                                     <i class="fas fa-envelope-open-text"
-                                        style="{{ Request::is('pengajuan-absensi*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('pengajuan-absensi*') ? 'color: blue' : '' }}">Pengajuan
+                                        style="{{ Request::is('pengajuan-absensi*') ? 'color : #066849' : 'color: black' }}"></i>
+                                    <span style="{{ Request::is('pengajuan-absensi*') ? 'color : #066849' : '' }}">Pengajuan
                                         Absensi</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/notifications') }}" class="nav-link">
                                     <i class="fas fa-bell"
-                                        style="{{ Request::is('notifications*') ? 'color: blue' : 'color: black' }}"></i>
+                                        style="{{ Request::is('notifications*') ? 'color : #066849' : 'color: black' }}"></i>
                                     <span
-                                        style="{{ Request::is('notifications*') ? 'color: blue' : '' }}">Notifications</span>
+                                        style="{{ Request::is('notifications*') ? 'color : #066849' : '' }}">Notifications</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/logout') }}" class="nav-link"
                                     onclick="return confirm('Are You Sure?')">
                                     <i class="fas fa-sign-out-alt"
-                                        style="{{ Request::is('logout*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('logout*') ? 'color: blue' : '' }}">Log Out</span>
+                                        style="{{ Request::is('logout*') ? 'color : #066849' : 'color: black' }}"></i>
+                                    <span style="{{ Request::is('logout*') ? 'color : #066849' : '' }}">Log Out</span>
                                 </a>
                             </li>
                         </ul>
