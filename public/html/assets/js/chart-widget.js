@@ -737,7 +737,7 @@
     },
     fill: {
       opacity: 0.9,
-      colors: ["#3e5fce"],
+      colors: ["#02694D"],
     },
 
     series: [
@@ -1459,7 +1459,7 @@
         },
       },
     },
-    colors: ["#3e5fce"],
+    colors: ["#02694D"],
     stroke: {
       width: 0,
     },
@@ -1494,11 +1494,11 @@
       max: 100,
     },
     fill: {
-      colors: ["#3e5fce"],
+      colors: ["#02694D"],
       type: "gradient",
       gradient: {
         inverseColors: false,
-        gradientToColors: ["#3e5fce"],
+        gradientToColors: ["#02694D"],
       },
     },
   };

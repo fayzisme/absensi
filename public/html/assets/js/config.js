@@ -1,4 +1,4 @@
-var primary = localStorage.getItem("primary") || '#3e5fce';
+var primary = localStorage.getItem("primary") || '#02694D';
 var secondary = localStorage.getItem("secondary") || '#ffce00';
 var success = localStorage.getItem("success") || '#61ae41';
 var info = localStorage.getItem("info") || '#4faad5';

@@ -147,26 +147,26 @@ A VERTICAL event
 .fc .fc-button-primary {
   color: #fff;
   color: var(--fc-button-text-color, #fff);
-  background-color: #3e5fce;
-  background-color: var(--fc-button-bg-color, #3e5fce);
-  border-color: #3e5fce;
-  border-color: var(--fc-button-border-color, #3e5fce);
+  background-color: #02694D;
+  background-color: var(--fc-button-bg-color, #02694D);
+  border-color: #02694D;
+  border-color: var(--fc-button-border-color, #02694D);
 }
 .fc .fc-button-primary:hover {
   color: #fff;
   color: var(--fc-button-text-color, #fff);
-  background-color: #3e5fce;
-  background-color: var(--fc-button-hover-bg-color, #3e5fce);
-  border-color: #3e5fce;
-  border-color: var(--fc-button-hover-border-color, #3e5fce);
+  background-color: #02694D;
+  background-color: var(--fc-button-hover-bg-color, #02694D);
+  border-color: #02694D;
+  border-color: var(--fc-button-hover-border-color, #02694D);
 }
 .fc .fc-button-primary:disabled {
   color: #fff;
   color: var(--fc-button-text-color, #fff);
-  background-color: #3e5fce;
-  background-color: var(--fc-button-bg-color, #3e5fce);
-  border-color: #3e5fce;
-  border-color: var(--fc-button-border-color, #3e5fce);
+  background-color: #02694D;
+  background-color: var(--fc-button-bg-color, #02694D);
+  border-color: #02694D;
+  border-color: var(--fc-button-border-color, #02694D);
 }
 .fc .fc-button-primary:focus {
   box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
@@ -174,10 +174,10 @@ A VERTICAL event
 .fc .fc-button-primary:not(:disabled):active {
   color: #fff;
   color: var(--fc-button-text-color, #fff);
-  background-color: #3e5fce;
-  background-color: var(--fc-button-active-bg-color, #3e5fce);
+  background-color: #02694D;
+  background-color: var(--fc-button-active-bg-color, #02694D);
   border-color: #534686;
-  border-color: var(--fc-button-active-border-color, #3e5fce);
+  border-color: var(--fc-button-active-border-color, #02694D);
 }
 .fc .fc-button-primary:not(:disabled):active:focus {
   box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
@@ -185,10 +185,10 @@ A VERTICAL event
 .fc .fc-button-primary:not(:disabled).fc-button-active {
   color: #fff;
   color: var(--fc-button-text-color, #fff);
-  background-color: #3e5fce;
-  background-color: var(--fc-button-active-bg-color, #3e5fce);
+  background-color: #02694D;
+  background-color: var(--fc-button-active-bg-color, #02694D);
   border-color: #534686;
-  border-color: var(--fc-button-active-border-color, #3e5fce);
+  border-color: var(--fc-button-active-border-color, #02694D);
 }
 .fc .fc-button-primary:not(:disabled).fc-button-active:focus {
   box-shadow: 0 0 0 0.2rem rgba(62, 95, 206, 0.5);

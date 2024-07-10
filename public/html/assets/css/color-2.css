@@ -37312,7 +37312,7 @@ body[class*=dark-] .for-dark {
   padding: 3px;
 }
 .customizer-contain .customizer-body .color-layout > div {
-  background-color: #3e5fce;
+  background-color: #02694D;
   height: 100%;
   width: 100%;
   border-radius: 5px;
@@ -37560,7 +37560,7 @@ div.dataTables_wrapper {
 }
 .popover .popover-header {
   background-color: #eae8ff;
-  color: #3e5fce;
+  color: #02694D;
   border-bottom: none;
 }
 .popover .popover-body {
@@ -37568,7 +37568,7 @@ div.dataTables_wrapper {
 }
 
 .card-header.note-toolbar .dropdown-menu.note-check a i {
-  color: #3e5fce;
+  color: #02694D;
   visibility: visible;
 }
 
@@ -37597,7 +37597,7 @@ div.dataTables_wrapper {
 }
 .tooltip .tooltip-inner {
   background-color: #eae8ff;
-  color: #3e5fce;
+  color: #02694D;
 }
 .tooltip .tooltip-arrow:before {
   border-top-color: #eae8ff;
@@ -37672,13 +37672,13 @@ div.dataTables_wrapper {
 }
 
 .border-tab .nav-tabs .nav-item .nav-link.active {
-  border-bottom: 2px solid #3e5fce;
+  border-bottom: 2px solid #02694D;
 }
 .border-tab .nav-tabs .nav-item .nav-link.show {
-  border-bottom: 2px solid #3e5fce;
+  border-bottom: 2px solid #02694D;
 }
 .border-tab .nav-tabs .nav-item .nav-link:focus {
-  border-bottom: 2px solid #3e5fce;
+  border-bottom: 2px solid #02694D;
 }
 
 .tabbed-card .nav-tabs .nav-item .nav-link {
