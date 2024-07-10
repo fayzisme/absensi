@@ -146,7 +146,7 @@
                                                 $timestamp_akhir = strtotime($tanggal_akhir);
                                                 $selisih_timestamp = $timestamp_akhir - $timestamp_mulai;
                                                 $jumlah_hari = (floor($selisih_timestamp / (60 * 60 * 24)))+1;
-                                                $persentase_kehadiran = (($total_hadir + $libur) / $jumlah_hari) * 100;
+                                                $persentase_kehadiran = round((($total_hadir + $libur) / $jumlah_hari) * 100,2);
                                             @endphp
                                             {{ $persentase_kehadiran }} %
                                         </td>

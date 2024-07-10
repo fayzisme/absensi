@@ -6,8 +6,8 @@ use App\Models\Lembur;
 use App\Models\Lokasi;
 use App\Models\User;
 use App\Models\MappingShift;
-use App\Models\Cuti;
 use App\Models\Ijin;
+use App\Models\Role;
 use App\Models\Shift;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -27,6 +27,7 @@ class karyawanController extends Controller
                           ->orWhere('telepon', 'LIKE', '%'.$search.'%')
                           ->orWhere('username', 'LIKE', '%'.$search.'%');
                 })
+                ->with('Lokasi')
                 ->orderBy('name', 'ASC')
                 ->paginate(10)
                 ->withQueryString();
@@ -81,33 +82,8 @@ class karyawanController extends Controller
 
     public function tambahKaryawanProses(Request $request)
     {
-        if($request["izin_cuti"] == null) {
-            $request["izin_cuti"] = "0";
-        } else {
-            $request["izin_cuti"];
-        }
-
-        if($request["izin_lainnya"] == null) {
-            $request["izin_lainnya"] = "0";
-        }  else {
-            $request["izin_lainnya"];
-        }
-
-        if($request["izin_telat"] == null) {
-            $request["izin_telat"] = "0";
-        }  else {
-            $request["izin_telat"];
-        }
-
-        if($request["izin_pulang_cepat"] == null) {
-            $request["izin_pulang_cepat"] = "0";
-        }  else {
-            $request["izin_pulang_cepat"];
-        }
-
-
         $validatedData = $request->validate([
-            'npk' => 'required|max:255',
+            'npk' => 'required|max:255|unique:users',
             'name' => 'required|max:255',
             'foto_karyawan' => 'image|file|max:10240',
             'email' => 'required|email:dns|unique:users',
@@ -119,28 +95,16 @@ class karyawanController extends Controller
             'tgl_join' => 'required',
             'status_nikah' => 'required',
             'alamat' => 'required',
-            'izin_cuti' => 'required',
-            'izin_lainnya' => 'required',
-            'izin_telat' => 'required',
-            'izin_pulang_cepat' => 'required',
-            'lokasi_id' => 'required',
-            'lembur' => 'required',
-            'kehadiran' => 'required',
-            'izin' => 'required',
-            'terlambat' => 'required',
+            'is_admin' => 'required'
         ]);
-
-        $validatedData['gaji_pokok'] = str_replace(',', '', $validatedData['gaji_pokok']);
-        $validatedData['makan_transport'] = str_replace(',', '', $validatedData['makan_transport']);
-        $validatedData['lembur'] = str_replace(',', '', $validatedData['lembur']);
-        $validatedData['kehadiran'] = str_replace(',', '', $validatedData['kehadiran']);
-        $validatedData['thr'] = str_replace(',', '', $validatedData['thr']);
-        $validatedData['bonus'] = str_replace(',', '', $validatedData['bonus']);
-        $validatedData['izin'] = str_replace(',', '', $validatedData['izin']);
-        $validatedData['terlambat'] = str_replace(',', '', $validatedData['terlambat']);
 
         if ($request->file('foto_karyawan')) {
             $validatedData['foto_karyawan'] = $request->file('foto_karyawan')->store('foto_karyawan');
+        }
+        
+        $role_id = Role::where('nama_role', $validatedData['is_admin'])->first();
+        if ($role_id) {
+            $validatedData['id_role'] = $role_id->id;
         }
 
         $validatedData['password'] = Hash::make($validatedData['password']);
@@ -469,17 +433,13 @@ class karyawanController extends Controller
     public function resetCutiProses(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'izin_cuti' => 'required',
-            'izin_dinas_luar' => 'required',
-            'izin_sakit' => 'required',
-            'izin_cek_kesehatan' => 'required',
-            'izin_keperluan_pribadi' => 'required',
-            'izin_lainnya' => 'required',
-            'izin_telat' => 'required',
-            'izin_pulang_cepat' => 'required'
+            'id_user' => 'required',
         ]);
 
-        ResetCuti::where('id', $id)->update($validatedData);
+        $ids = [];
+        $reset = [];
+
+        Ijin::whereIn('id', $ids)->update($reset);
         return redirect('/reset-cuti')->with('success', 'Master Cuti Berhasil Diupdate');
     }
 

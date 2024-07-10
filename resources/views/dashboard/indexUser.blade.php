@@ -235,42 +235,13 @@
             </div>
             <div class="mt-3">
                 <div class="attendance-list">
-                    <div class="attendance-item">
-                        <div class="details">
-                            <h5>Shift: Pagi</h5>
-                            <p>Tanggal: 2024-07-09</p>
-                        </div>
-                        <div class="grid">
-                            <div class="status text-success">Masuk</div>
-                            <div class="time">08:00</div>
-                        </div>
-                    </div>
-                    <div class="attendance-item">
-                        <div class="details">
-                            <h5>Shift: Siang</h5>
-                            <p>Tanggal: 2024-07-08</p>
-                        </div>
-                        <div class="grid">
-                            <div class="status text-success">Masuk</div>
-                            <div class="time">14:00</div>
-                        </div>
-                    </div>
-                    <div class="attendance-item">
-                        <div class="details">
-                            <h5>Shift: Malam</h5>
-                            <p>Tanggal: 2024-07-07</p>
-                        </div>
-                        <div class="grid">
-                            <div class="status text-danger">Keluar</div>
-                            <div class="time">22:00</div>
-                        </div>
-                    </div>
+                    {{-- list attendance --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.getElementById('location-link').addEventListener('click', function(event) {
         event.preventDefault();
@@ -284,6 +255,52 @@
             alert('Geolocation is not supported by this browser.');
         }
     });
+
+    $(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    })
+    //user id
+    let user_id = {!! json_encode(auth()->user()->id) !!}
+
+    function getAbsensi(user_id) {
+        //clear
+        $('.attendance-item').remove();
+        $.ajax({
+            type : 'GET',
+            url : "{{ route('api-absen') }}",
+            data :  {user_id:user_id},
+            cache : false,
+            success: function(response){
+                
+                let datas = response.data;
+                if (datas.length > 0) {
+                    datas.forEach(el => {
+                        $('.attendance-list').append(`<div class="attendance-item">
+                            <div class="details">
+                                <h5>Shift: ${el.shift.nama_shift}</h5>
+                                <p>Tanggal: ${el.tanggal}</p>
+                            </div>
+                            <div class="grid">
+                                ${el.status_absen == 'Masuk' ? `<div class="status text-success">${el.status_absen}</div>` : `<div class="status text-danger">${el.status_absen}</div>`}
+                                <div class="time">${el.jam_absen || '-'}</div>
+                            </div>
+                        </div>`);
+                    });
+                }
+            },
+            error: function(data){
+                console.log('error:' ,data);
+            }
+        })
+    }
+
+    setTimeout(() => {
+        getAbsensi(user_id);
+    }, 500);
 </script>
 
 

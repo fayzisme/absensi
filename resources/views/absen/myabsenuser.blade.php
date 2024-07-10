@@ -40,7 +40,7 @@
                        <th>Foto Pulang</th>
                        <th>Keterangan Pulang</th>
                        <th>Status Absen</th>
-                       <th>Actions</th>
+                       {{-- <th>Actions</th> --}}
                    </tr>
                 </thead>
                 <tbody>
@@ -96,8 +96,12 @@
                                     @php
                                         $jarak_masuk = explode(".", $da->jarak_masuk);
                                     @endphp
-                                    <a href="{{ url('/maps/'.$da->lat_absen.'/'.$da->long_absen.'/'.$da->user_id) }}" class="btn btn-sm btn-secondary" target="_blank">lihat</a>
-                                    {{ $jarak_masuk[0] }} Meter
+                                    <div style="display: flex; flex-wrap:wrap;">
+                                        <a href="{{ url('/maps/'.$da->lat_absen.'/'.$da->long_absen.'/'.$da->user_id) }}" class="btn btn-sm btn-secondary" target="_blank">lihat</a>
+                                        <span>
+                                            {{ $jarak_masuk[0] }} Meter
+                                        </span>
+                                    </div>
                                 @endif
                             </td>
                             <td>
@@ -214,15 +218,6 @@
                                     {{ $da->status_absen }}
                                 @else
                                     {{ $da->status_absen }}
-                                @endif
-                            </td>
-                            <td>
-                                @if ($da->tanggal < date('Y-m-d'))
-                                    @if ($da->jam_masuk_pengajuan == null)
-                                        <a href="{{ url('/my-absen/pengajuan/'.$da->id) }}" class="btn btn-sm btn-warning">Ajukan</a>
-                                    @else
-                                        <span style="background-color: greenyellow">Sudah Pengajuan</span>
-                                    @endif
                                 @endif
                             </td>
                         </tr>

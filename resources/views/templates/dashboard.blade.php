@@ -165,13 +165,12 @@
 
                       <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="film"></i><span>Overtime</span></a>
                         <ul class="sidebar-submenu">
-                          <li><a href="{{ url('/lembur') }}">Lembur</a></li>
                           <li><a href="{{ url('/data-lembur') }}">Data Lembur</a></li>
                         </ul>
                       </li>
 
                       <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="{{ url('/data-cuti') }}"><i data-feather="shuffle"> </i><span>Cuti</span></a>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ url('/data-cuti') }}"><i data-feather="shuffle"> </i><span>Ijin</span></a>
                       </li>
 
                     </ul>

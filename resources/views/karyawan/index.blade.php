@@ -36,6 +36,7 @@
                                     <th>Nama</th>
                                     <th>Username</th>
                                     <th>Role</th>
+                                    <th>Lokasi Kantor</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -46,6 +47,7 @@
                                         <td>{{ $du->name }}</td>
                                         <td>{{ $du->username }}</td>
                                         <td>{{ $du->Role->nama_role ?? '-' }}</td>
+                                        <td>{{ $du->Lokasi->nama_lokasi ?? '-' }}</td>
                                         <td>
                                             <ul class="action"> 
                                                 <li class="edit me-2"><a href="{{ url('/pegawai/detail/'.$du->id) }}" title="Edit Pegawai"><i class="icon-pencil-alt"></i></a></li>

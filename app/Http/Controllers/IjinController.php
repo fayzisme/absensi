@@ -157,7 +157,7 @@ class IjinController extends Controller
         $mulai = request()->input('mulai');
         $akhir = request()->input('akhir');
 
-        $cuti = Ijin::when($mulai && $akhir, function ($query) use ($mulai, $akhir) {
+        $ijin = Ijin::when($mulai && $akhir, function ($query) use ($mulai, $akhir) {
                         return $query->whereBetween('tanggal', [$mulai, $akhir]);
                                                             
                     })
@@ -165,7 +165,7 @@ class IjinController extends Controller
         
         return view('cuti.datacuti', [
             'title' => 'Data Ijin Karyawan',
-            'data_cuti' => $cuti
+            'data_cuti' => $ijin
         ]);
     }
 

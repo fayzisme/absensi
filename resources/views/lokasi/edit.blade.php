@@ -1,7 +1,7 @@
 @extends('templates.dashboard')
 @section('isi')
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
             <div class="card">
                 <form method="post" action="{{ url('/lokasi-kantor/update/'.$lokasi->id) }}" class="p-4">
                     @method('put')
@@ -38,12 +38,7 @@
                 <br>
             </div>
         </div>
-        <div class="col-md-2">
-            <center>
-                <h1 style="color: white">Or</h1>
-            </center>
-        </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <div class="card">
                 <form method="post" action="{{ url('/lokasi-kantor/update/'.$lokasi->id) }}" class="p-4">
                     @method('put')

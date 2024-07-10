@@ -52,25 +52,6 @@
         </div>
 
         <div class="group-input mt-4">
-            <label>Jabatan</label>
-            <select name="jabatan_id" id="jabatan_id">
-              <option value="">- - Pilih - -</option>
-              @foreach ($data_jabatan as $dj)
-                @if(old('jabatan_id') == $dj->id)
-                  <option value="{{ $dj->id }}" selected>{{ $dj->nama_jabatan }}</option>
-                @else
-                  <option value="{{ $dj->id }}">{{ $dj->nama_jabatan }}</option>
-                @endif
-              @endforeach
-            </select>
-            @error('jabatan_id')
-              <div class="invalid-feedback">
-                  {{ $message }}
-              </div>
-            @enderror
-        </div>
-
-        <div class="group-input mt-4">
             <label>Lokasi</label>
             <select name="lokasi_id" id="lokasi_id">
               <option value="">- - Pilih - -</option>

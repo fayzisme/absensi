@@ -30,12 +30,10 @@
                             <th>Telat</th>
                             <th>Lokasi Masuk</th>
                             <th>Foto Masuk</th>
-                            <th>Keterangan Masuk</th>
                             <th>Jam Pulang</th>
                             <th>Pulang Cepat</th>
                             <th>Lokasi Pulang</th>
                             <th>Foto Pulang</th>
-                            <th>Keterangan Pulang</th>
                             <th>Status Absen</th>
                         </tr>
                     </thead>
@@ -114,17 +112,6 @@
                                 <span class="badge badge-warning">Sedang Cuti</span>
                             @elseif($da->jam_absen == null)
                                 <span class="badge badge-danger">Belum Absen</span>
-                            @else
-                                {{ $da->keterangan_masuk }}
-                            @endif
-                        </td>
-                        <td>
-                            @if($da->status_absen == 'Libur')
-                                <span class="badge badge-info">Libur</span>
-                            @elseif($da->status_absen == 'Cuti')
-                                <span class="badge badge-warning">Sedang Cuti</span>
-                            @elseif($da->jam_absen == null)
-                                <span class="badge badge-danger">Belum Absen</span>
                             @elseif($da->jam_pulang == null)
                                 <span class="badge badge-warning">Belum Pulang</span>
                             @else
@@ -186,19 +173,6 @@
                                 <span class="badge badge-warning">Belum Pulang</span>
                             @else
                                 <img src="{{ url('storage/' . $da->foto_jam_pulang) }}" style="width: 60px">
-                            @endif
-                        </td>
-                        <td>
-                            @if($da->status_absen == 'Libur')
-                                <span class="badge badge-info">Libur</span>
-                            @elseif($da->status_absen == 'Cuti')
-                                <span class="badge badge-warning">Sedang Cuti</span>
-                            @elseif($da->jam_absen == null)
-                                <span class="badge badge-danger">Belum Absen</span>
-                            @elseif($da->jam_pulang == null)
-                                <span class="badge badge-warning">Belum Pulang</span>
-                            @else
-                                {{ $da->keterangan_pulang }}
                             @endif
                         </td>
                         <td>

@@ -37,11 +37,10 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Nama Pegawai</th>
-                                    <th>Nama Cuti</th>
+                                    <th>Nama Ijin</th>
                                     <th>Tanggal</th>
-                                    <th>Alasan Cuti</th>
-                                    <th>Foto Cuti</th>
-                                    <th>Status Cuti</th>
+                                    <th>Alasan Ijin</th>
+                                    <th>Status Ijin</th>
                                     <th>Catatan</th>
                                     <th>Actions</th>
                                 </tr>
@@ -54,9 +53,6 @@
                                     <td>{{ $dc->nama_cuti }}</td>
                                     <td>{{ $dc->tanggal}}</td>
                                     <td>{{ $dc->alasan_cuti}}</td>
-                                    <td>
-                                        <img src="{{ url('storage/'.$dc->foto_cuti) }}" style="width: 70px" alt="">
-                                    </td>
                                     <td>
                                         @if($dc->status_cuti == "Diterima")
                                             <span class="badge badge-success">{{ $dc->status_cuti }}</span>

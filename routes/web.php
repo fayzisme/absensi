@@ -106,15 +106,13 @@ Route::get('/my-lembur', [LemburController::class, 'myLembur'])->middleware('aut
 
 Route::get('/rekap-data', [RekapDataController::class, 'index'])->middleware('admin');
 Route::get('/rekap-data/get-data', [RekapDataController::class, 'getData'])->middleware('admin');
-Route::get('/rekap-data/payroll/{id}', [RekapDataController::class, 'payroll'])->middleware('admin');
-Route::post('/rekap-data/payroll/tambah', [RekapDataController::class, 'tambahPayroll'])->middleware('admin');
 
 Route::get('/cuti', [IjinController::class, 'index'])->middleware('auth');
 Route::post('/cuti/tambah', [IjinController::class, 'tambah'])->middleware('auth');
 Route::delete('/cuti/delete/{id}', [IjinController::class, 'delete'])->middleware('auth');
 Route::get('/cuti/edit/{id}', [IjinController::class, 'edit'])->middleware('auth');
 Route::put('/cuti/proses-edit/{id}', [IjinController::class, 'editProses'])->middleware('auth');
-Route::get('/data-cuti', [IjinController::class, 'dataCuti'])->middleware('admin');
+Route::get('/data-cuti', [IjinController::class, 'dataIjin'])->middleware('admin');
 Route::get('/data-cuti/tambah', [IjinController::class, 'tambahAdmin'])->middleware('admin');
 Route::post('/data-cuti/getuserid', [IjinController::class, 'getUserId'])->middleware('admin');
 Route::post('/data-cuti/proses-tambah', [IjinController::class, 'tambahAdminProses'])->middleware('admin');

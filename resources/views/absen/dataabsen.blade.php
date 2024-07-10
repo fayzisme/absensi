@@ -48,20 +48,18 @@
                         <table id="mytable" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
-                                    <th>Nama Pegawai</th>
-                                    <th>Shift</th>
-                                    <th>Tanggal</th>
+                                    <th style="padding-right: 40px;">No.</th>
+                                    <th style="padding-right: 40px;">Nama Pegawai</th>
+                                    <th style="padding-right: 40px;">Shift</th>
+                                    <th style="padding-right: 40px;">Tanggal</th>
                                     <th>Jam Masuk</th>
                                     <th>Telat</th>
                                     <th>Lokasi Masuk</th>
                                     <th>Foto Masuk</th>
-                                    <th>Keterangan Masuk</th>
                                     <th>Jam Pulang</th>
                                     <th>Pulang Cepat</th>
                                     <th>Lokasi Pulang</th>
                                     <th>Foto Pulang</th>
-                                    <th>Keterangan Pulang</th>
                                     <th>Status Absen</th>
                                     <th>Actions</th>
                                 </tr>
@@ -147,17 +145,6 @@
                                         <span class="badge badge-warning">Sedang Izin</span>
                                     @elseif($da->jam_absen == null)
                                         <span class="badge badge-danger">Belum Absen</span>
-                                    @else
-                                        {{ $da->keterangan_masuk }}
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($da->status_absen == 'Libur')
-                                        <span class="badge badge-info">Libur</span>
-                                    @elseif($da->status_absen == 'Cuti')
-                                        <span class="badge badge-warning">Sedang Izin</span>
-                                    @elseif($da->jam_absen == null)
-                                        <span class="badge badge-danger">Belum Absen</span>
                                     @elseif($da->jam_pulang == null)
                                         <span class="badge badge-warning">Belum Pulang</span>
                                     @else
@@ -223,19 +210,6 @@
                                 </td>
                                 <td>
                                     @if($da->status_absen == 'Libur')
-                                        <span class="badge badge-info">Libur</span>
-                                    @elseif($da->status_absen == 'Cuti')
-                                        <span class="badge badge-warning">Sedang Izin</span>
-                                    @elseif($da->jam_absen == null)
-                                        <span class="badge badge-danger">Belum Absen</span>
-                                    @elseif($da->jam_pulang == null)
-                                        <span class="badge badge-warning">Belum Pulang</span>
-                                    @else
-                                        {{ $da->keterangan_pulang }}
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($da->status_absen == 'Libur')
                                         <span class="badge badge-info">{{ $da->status_absen }}</span>
                                     @elseif($da->status_absen == 'Cuti' || $da->status_absen == 'Izin Telat' || $da->status_absen == 'Izin Pulang Cepat')
                                         <span class="badge badge-warning">{{ $da->status_absen }}</span>
@@ -258,7 +232,7 @@
                                         @else
                                             @if ($da->id)
                                                 <li class="me-2">
-                                                    <a href="{{ url('/data-absen/'.$da->id.'/edit-masuk') }}" class="btn btn-xs btn-warning">Edit Masuk</a>
+                                                    <a href="{{ url('/data-absen/'.$da->id.'/edit-masuk') }}" class="btn btn-xs btn-warning" type="btn">Edit Masuk</a>
                                                 </li>
                                             @endif
                                         @endif
@@ -273,7 +247,7 @@
                                             </li>
                                         @elseif($da->jam_absen == null)
                                             <li class="me-2">
-                                                <span class="badge badge-danger">Belum Masuk</span>
+                                                -
                                             </li>
                                         @else
                                             @if ($da->id)

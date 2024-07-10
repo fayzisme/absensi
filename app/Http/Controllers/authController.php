@@ -173,7 +173,7 @@ class authController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'username' => 'required|unique:users||min:7|max:7',
+            'username' => 'required|unique:users|max:7',
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|confirmed|min:6|max:255',
             'lokasi_id' => 'required',
@@ -185,6 +185,7 @@ class authController extends Controller
 
         $validatedData['is_admin'] = 'user';
         $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['id_role'] = 2;
         User::create($validatedData);
         return redirect('/')->with('success', 'Berhasil Register! Silahkan Login');
     }

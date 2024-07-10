@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class UsersController extends Controller
 {
     public function index()
-    {
+    {   
         $data = User::all();
 
         if($data){

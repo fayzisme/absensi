@@ -158,7 +158,10 @@ class LemburController extends Controller
     
             Lembur::where('id', $id)->update($validatedData);
 
-            $users = User::where('is_admin', 'admin')->get();
+            $users = User::whereHas('Role', function($query){
+                return $query->where('nama_role', 'admin');
+            })->get();
+
             foreach ($users as $user) {
                 $type = 'Approval';
                 $notif = 'Pengajuan Lembur Dari ' . auth()->user()->name . ' Butuh Approval Anda'; 
@@ -195,8 +198,8 @@ class LemburController extends Controller
             $request["akhir"] = $request["mulai"];
         }
 
-        if ($request["user_id"] && $request["mulai"] && $request["akhir"]) {
-            $data_lembur = Lembur::where('user_id', $request["user_id"])->whereBetween('tanggal', [$request["mulai"], $request["akhir"]]);
+        if ($request["mulai"] && $request["akhir"]) {
+            $data_lembur = Lembur::whereBetween('tanggal', [$request["mulai"], $request["akhir"]]);
         }
 
         return view('lembur.datalembur', [
